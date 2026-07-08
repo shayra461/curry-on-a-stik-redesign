@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurStoryRoute = OurStoryRouteImport.update({
+  id: '/our-story',
+  path: '/our-story',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +37,34 @@ const ProductsHandleRoute = ProductsHandleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/shop' | '/products/$handle'
+  fullPaths: '/' | '/our-story' | '/shop' | '/products/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/shop' | '/products/$handle'
-  id: '__root__' | '/' | '/shop' | '/products/$handle'
+  to: '/' | '/our-story' | '/shop' | '/products/$handle'
+  id: '__root__' | '/' | '/our-story' | '/shop' | '/products/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OurStoryRoute: typeof OurStoryRoute
   ShopRoute: typeof ShopRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/shop'
       fullPath: '/shop'
       preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-story': {
+      id: '/our-story'
+      path: '/our-story'
+      fullPath: '/our-story'
+      preLoaderRoute: typeof OurStoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OurStoryRoute: OurStoryRoute,
   ShopRoute: ShopRoute,
   ProductsHandleRoute: ProductsHandleRoute,
 }
