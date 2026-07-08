@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -16,6 +17,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 import { Route as PoliciesPolicyRouteImport } from './routes/policies.$policy'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/policies/$policy': typeof PoliciesPolicyRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/policies/$policy': typeof PoliciesPolicyRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/policies/$policy': typeof PoliciesPolicyRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/our-story'
     | '/shop'
+    | '/sitemap.xml'
     | '/policies/$policy'
     | '/products/$handle'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/our-story'
     | '/shop'
+    | '/sitemap.xml'
     | '/policies/$policy'
     | '/products/$handle'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/our-story'
     | '/shop'
+    | '/sitemap.xml'
     | '/policies/$policy'
     | '/products/$handle'
   fileRoutesById: FileRoutesById
@@ -104,12 +116,20 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   OurStoryRoute: typeof OurStoryRoute
   ShopRoute: typeof ShopRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PoliciesPolicyRoute: typeof PoliciesPolicyRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   OurStoryRoute: OurStoryRoute,
   ShopRoute: ShopRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   PoliciesPolicyRoute: PoliciesPolicyRoute,
   ProductsHandleRoute: ProductsHandleRoute,
 }
