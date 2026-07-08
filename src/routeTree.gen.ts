@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as OurStoryRouteImport } from './routes/our-story'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 
@@ -22,6 +23,11 @@ const ShopRoute = ShopRouteImport.update({
 const OurStoryRoute = OurStoryRouteImport.update({
   id: '/our-story',
   path: '/our-story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +43,14 @@ const ProductsHandleRoute = ProductsHandleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
   '/products/$handle': typeof ProductsHandleRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/our-story' | '/shop' | '/products/$handle'
+  fullPaths: '/' | '/faq' | '/our-story' | '/shop' | '/products/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/our-story' | '/shop' | '/products/$handle'
-  id: '__root__' | '/' | '/our-story' | '/shop' | '/products/$handle'
+  to: '/' | '/faq' | '/our-story' | '/shop' | '/products/$handle'
+  id: '__root__' | '/' | '/faq' | '/our-story' | '/shop' | '/products/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FaqRoute: typeof FaqRoute
   OurStoryRoute: typeof OurStoryRoute
   ShopRoute: typeof ShopRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
@@ -85,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurStoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FaqRoute: FaqRoute,
   OurStoryRoute: OurStoryRoute,
   ShopRoute: ShopRoute,
   ProductsHandleRoute: ProductsHandleRoute,
