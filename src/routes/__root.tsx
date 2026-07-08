@@ -82,19 +82,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Curry On A Stik' — Therapeutic Grooming Tools for Horses, Dogs & Cats" },
+      {
+        name: "description",
+        content:
+          "Professional, therapeutic grooming, massage & bathing tools for horses, dogs and cats. Veterinarian tested & approved. 30-day money back guarantee.",
+      },
+      { name: "author", content: "Curry On A Stik'" },
+      {
+        property: "og:title",
+        content: "Curry On A Stik' — Therapeutic Grooming Tools for Horses, Dogs & Cats",
+      },
+      {
+        property: "og:description",
+        content:
+          "The only grooming, massage & bathing tool you'll ever need. Veterinarian tested & approved. Over 50,000 happy fur babies & fur parents.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
