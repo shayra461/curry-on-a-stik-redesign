@@ -42,9 +42,12 @@
   --color-cream: var(--cream);
   --color-sale: var(--sale);
   --color-star: var(--star);
+  --color-lilac: var(--lilac);
+  --color-lilac-soft: var(--lilac-soft);
 
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
+  --font-serif: var(--font-serif-brand);
 
   --shadow-card: 0 1px 2px oklch(0.2 0.02 150 / 0.04), 0 8px 24px -12px oklch(0.2 0.02 150 / 0.12);
   --shadow-card-hover: 0 2px 4px oklch(0.2 0.02 150 / 0.06), 0 16px 40px -16px oklch(0.2 0.02 150 / 0.18);
