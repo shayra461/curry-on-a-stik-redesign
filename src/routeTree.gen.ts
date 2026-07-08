@@ -14,6 +14,7 @@ import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
+import { Route as PoliciesPolicyRouteImport } from './routes/policies.$policy'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
@@ -40,12 +41,18 @@ const ProductsHandleRoute = ProductsHandleRouteImport.update({
   path: '/products/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PoliciesPolicyRoute = PoliciesPolicyRouteImport.update({
+  id: '/policies/$policy',
+  path: '/policies/$policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
+  '/policies/$policy': typeof PoliciesPolicyRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
+  '/policies/$policy': typeof PoliciesPolicyRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,34 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/our-story': typeof OurStoryRoute
   '/shop': typeof ShopRoute
+  '/policies/$policy': typeof PoliciesPolicyRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/faq' | '/our-story' | '/shop' | '/products/$handle'
+  fullPaths:
+    | '/'
+    | '/faq'
+    | '/our-story'
+    | '/shop'
+    | '/policies/$policy'
+    | '/products/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/faq' | '/our-story' | '/shop' | '/products/$handle'
-  id: '__root__' | '/' | '/faq' | '/our-story' | '/shop' | '/products/$handle'
+  to:
+    | '/'
+    | '/faq'
+    | '/our-story'
+    | '/shop'
+    | '/policies/$policy'
+    | '/products/$handle'
+  id:
+    | '__root__'
+    | '/'
+    | '/faq'
+    | '/our-story'
+    | '/shop'
+    | '/policies/$policy'
+    | '/products/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +104,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   OurStoryRoute: typeof OurStoryRoute
   ShopRoute: typeof ShopRoute
+  PoliciesPolicyRoute: typeof PoliciesPolicyRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
 }
 
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/policies/$policy': {
+      id: '/policies/$policy'
+      path: '/policies/$policy'
+      fullPath: '/policies/$policy'
+      preLoaderRoute: typeof PoliciesPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -124,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   OurStoryRoute: OurStoryRoute,
   ShopRoute: ShopRoute,
+  PoliciesPolicyRoute: PoliciesPolicyRoute,
   ProductsHandleRoute: ProductsHandleRoute,
 }
 export const routeTree = rootRouteImport
