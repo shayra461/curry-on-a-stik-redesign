@@ -14,6 +14,7 @@ import { Newsletter } from "@/components/Newsletter";
 import { VideoCard } from "@/components/VideoCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Stars } from "@/components/Stars";
+import { Accent } from "@/components/Accent";
 import { useCart } from "@/lib/cart";
 import {
   getProduct,
@@ -50,35 +51,58 @@ function Index() {
   return (
     <>
       {/* 1. HERO */}
-      <section className="bg-background">
-        <div className="container-page grid items-center gap-8 py-10 md:grid-cols-2 md:py-16 lg:gap-12">
-          <div className="order-2 flex flex-col items-start gap-5 md:order-1">
-            <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold text-secondary-foreground">
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -right-20 -top-24 h-[32rem] w-[32rem] rounded-full bg-lilac-soft/60 blur-3xl" />
+          <div className="absolute -left-24 top-40 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        </div>
+        <div className="container-page grid items-center gap-10 pb-16 pt-12 md:grid-cols-2 md:pb-20 md:pt-16 lg:gap-16">
+          <div className="order-2 flex flex-col items-start gap-6 md:order-1">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-muted-foreground backdrop-blur">
               <Star className="h-3.5 w-3.5 fill-star text-star" />
               Winner — Family Choice Award
             </span>
-            <h1 className="text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
-              The only grooming tool you'll ever need
+            <h1 className="text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[4rem]">
+              The only grooming tool you'll <Accent>ever need</Accent>
             </h1>
             <p className="max-w-md text-lg text-muted-foreground">
               Professional, therapeutic grooming, massage &amp; bathing in one
-              patented tool for horses, dogs &amp; cats.
+              patented tool for horses, dogs &amp; cats. The gold standard of pet
+              wellness.
             </p>
-            <div className="flex items-center gap-3">
-              <Stars />
-              <span className="text-sm font-medium text-muted-foreground">
-                Loved by 50,000+ fur parents
-              </span>
+
+            <div className="flex flex-wrap items-center gap-6">
+              <div className="space-y-1">
+                <Stars size={16} />
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                  Loved by 50,000+ fur parents
+                </p>
+              </div>
+              <div className="hidden h-10 w-px bg-border sm:block" />
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-extrabold">
+                  {formatPrice(hero.priceMin)}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  Free 30-day returns
+                </span>
+              </div>
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold">{formatPrice(hero.priceMin)}</span>
-              <span className="text-sm text-muted-foreground">Free returns for 30 days</span>
-            </div>
+
             <div className="flex w-full flex-col gap-3 sm:flex-row">
-              <Button size="xl" onClick={addHero} className="flex-1 sm:flex-none">
+              <Button
+                size="xl"
+                onClick={addHero}
+                className="flex-1 rounded-full sm:flex-none"
+              >
                 Add to Cart
               </Button>
-              <Button asChild size="xl" variant="outline" className="flex-1 sm:flex-none">
+              <Button
+                asChild
+                size="xl"
+                variant="outline"
+                className="flex-1 rounded-full sm:flex-none"
+              >
                 <Link to="/shop">Shop Now</Link>
               </Button>
             </div>
@@ -89,13 +113,23 @@ function Index() {
           </div>
 
           <div className="order-1 md:order-2">
-            <div className="mx-auto max-w-md overflow-hidden rounded-3xl bg-cream p-6 sm:p-10">
-              <img
-                src={hero.images[0]}
-                alt="Curry On A Stik' therapeutic curry comb"
-                className="h-full w-full object-contain"
-                fetchPriority="high"
-              />
+            <div className="relative mx-auto max-w-md">
+              <div className="overflow-hidden rounded-[2.5rem] border border-border bg-card p-6 shadow-card-hover sm:p-10">
+                <img
+                  src={hero.images[0]}
+                  alt="Curry On A Stik' therapeutic curry comb"
+                  className="h-full w-full object-contain"
+                  fetchPriority="high"
+                />
+              </div>
+              <div className="absolute -bottom-5 -left-4 hidden -rotate-3 rounded-[1.5rem] bg-accent px-6 py-4 text-accent-foreground shadow-card-hover sm:block">
+                <p className="text-[0.6rem] font-bold uppercase tracking-widest opacity-80">
+                  Original Design
+                </p>
+                <p className="font-serif text-lg font-semibold italic">
+                  Dual-Sided Action
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -105,22 +139,31 @@ function Index() {
       <TrustBar />
 
       {/* 3. BENEFITS */}
-      <section className="container-page py-16 md:py-20">
-        <SectionHeading
-          eyebrow="Why it works"
-          title="Grooming, massage & bathing — reimagined"
-          subtitle="A curry comb perfected over two years by a husband-and-wife team who reviewed nearly every brush on the market."
-        />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="container-page py-16 md:py-24">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-accent">
+            Why it works
+          </span>
+          <h2 className="max-w-3xl text-3xl font-extrabold sm:text-4xl md:text-5xl">
+            Grooming, massage &amp; bathing — <Accent>reimagined</Accent>
+          </h2>
+          <p className="max-w-2xl text-muted-foreground">
+            A curry comb perfected over two years by a husband-and-wife team who
+            reviewed nearly every brush on the market.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {benefits.map((b) => (
             <div
               key={b}
-              className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-card"
+              className="group flex items-start gap-4 rounded-[2rem] border border-border bg-card p-7 shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover"
             >
-              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
-                <Check className="h-4 w-4" />
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                <Check className="h-5 w-5" />
               </span>
-              <p className="text-sm font-medium text-foreground">{b}</p>
+              <p className="pt-1 text-[15px] font-medium leading-relaxed text-foreground">
+                {b}
+              </p>
             </div>
           ))}
         </div>
@@ -128,25 +171,37 @@ function Index() {
 
       {/* 4. SHOP BY ANIMAL */}
       <section className="bg-cream">
-        <div className="container-page py-16 md:py-20">
-          <SectionHeading eyebrow="Made for every coat" title="Shop by animal" />
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+        <div className="container-page py-16 md:py-24">
+          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-accent">
+                Curated collections
+              </span>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                Shop by <Accent>animal</Accent>
+              </h2>
+            </div>
+            <Button asChild variant="outline" className="rounded-full">
+              <Link to="/shop">View catalog</Link>
+            </Button>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-3">
             {animalCategories.map((a) => (
               <Link
                 key={a.key}
                 to="/shop"
                 search={{ animal: a.key }}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow hover:shadow-card-hover"
+                className="group flex flex-col overflow-hidden rounded-[2rem] border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover"
               >
-                <div className="aspect-[4/3] overflow-hidden bg-background">
+                <div className="relative aspect-[5/4] overflow-hidden bg-gradient-to-br from-secondary to-lilac-soft/40">
                   <img
                     src={a.image}
                     alt={a.title}
                     loading="lazy"
-                    className="h-full w-full object-contain p-6"
+                    className="h-full w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="flex flex-1 flex-col gap-2 p-5">
+                <div className="flex flex-1 flex-col gap-2 p-6">
                   <h3 className="text-xl font-bold">{a.title}</h3>
                   <p className="text-sm text-muted-foreground">{a.blurb}</p>
                   <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-primary">
@@ -161,18 +216,21 @@ function Index() {
       </section>
 
       {/* 5. PRODUCT COLLECTION */}
-      <section className="container-page py-16 md:py-20">
-        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-          <SectionHeading
-            align="left"
-            eyebrow="Best sellers"
-            title="Shop the collection"
-          />
-          <Button asChild variant="outline">
+      <section className="container-page py-16 md:py-24">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-accent">
+              Best sellers
+            </span>
+            <h2 className="text-3xl font-extrabold sm:text-4xl">
+              Shop the <Accent>collection</Accent>
+            </h2>
+          </div>
+          <Button asChild variant="outline" className="rounded-full">
             <Link to="/shop">View all products</Link>
           </Button>
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3">
           {retailProducts.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
@@ -181,15 +239,15 @@ function Index() {
 
       {/* 6. PRODUCT STORY */}
       <section className="bg-cream">
-        <div className="container-page py-16 md:py-20">
+        <div className="container-page py-16 md:py-24">
           <SectionHeading
             eyebrow="Our story"
             title="Built with veterinarians, perfected by hand"
             subtitle={brandStory.intro}
           />
 
-          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-border bg-card p-6 shadow-card sm:p-10">
-            <p className="text-lg italic leading-relaxed text-foreground">
+          <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-border bg-card p-6 shadow-card sm:p-10">
+            <p className="font-serif text-xl italic leading-relaxed text-foreground">
               {brandStory.origin}
             </p>
             <p className="mt-4 text-sm font-semibold text-muted-foreground">
@@ -208,10 +266,14 @@ function Index() {
               {ingredients.map((ing) => (
                 <div
                   key={ing.name}
-                  className="rounded-xl border border-border bg-card p-5 shadow-card"
+                  className="rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
                 >
-                  <h4 className="text-base font-bold text-foreground">{ing.name}</h4>
-                  <p className="mt-1.5 text-sm text-muted-foreground">{ing.text}</p>
+                  <h4 className="text-base font-bold text-foreground">
+                    {ing.name}
+                  </h4>
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    {ing.text}
+                  </p>
                 </div>
               ))}
             </div>
@@ -227,17 +289,23 @@ function Index() {
       </section>
 
       {/* 7. WHY CUSTOMERS LOVE IT */}
-      <section className="container-page py-16 md:py-20">
-        <SectionHeading
-          eyebrow="Reviews"
-          title="Why customers love it"
-          subtitle="Real reviews from real fur parents and professional equestrians."
-        />
-        <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+      <section className="container-page py-16 md:py-24">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-accent">
+            Reviews
+          </span>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">
+            Why customers <Accent>love it</Accent>
+          </h2>
+          <p className="max-w-2xl text-muted-foreground">
+            Real reviews from real fur parents and professional equestrians.
+          </p>
+        </div>
+        <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
           {testimonials.map((t, i) => (
             <figure
               key={i}
-              className="break-inside-avoid rounded-2xl border border-border bg-card p-5 shadow-card"
+              className="break-inside-avoid rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
             >
               <Stars size={14} />
               {t.title && (
@@ -251,7 +319,10 @@ function Index() {
               <p className="mt-3 text-sm font-semibold text-foreground">
                 {t.name}
                 {t.location && (
-                  <span className="font-normal text-muted-foreground"> · {t.location}</span>
+                  <span className="font-normal text-muted-foreground">
+                    {" "}
+                    · {t.location}
+                  </span>
                 )}
               </p>
             </figure>
@@ -261,13 +332,13 @@ function Index() {
 
       {/* 8. VIDEO DEMONSTRATIONS */}
       <section className="bg-cream">
-        <div className="container-page py-16 md:py-20">
+        <div className="container-page py-16 md:py-24">
           <SectionHeading
             eyebrow="See it in action"
             title="Video demonstrations"
             subtitle="Watch how horses, dogs and cats respond to Curry On A Stik'."
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((v) => (
               <VideoCard key={v.id} video={v} />
             ))}
@@ -276,7 +347,7 @@ function Index() {
       </section>
 
       {/* 9. FAQ */}
-      <section className="container-page py-16 md:py-20">
+      <section className="container-page py-16 md:py-24">
         <div className="mx-auto max-w-3xl">
           <SectionHeading eyebrow="Questions" title="Frequently asked questions" />
           <Accordion type="single" collapsible className="mt-8">
@@ -292,7 +363,7 @@ function Index() {
             ))}
           </Accordion>
           <div className="mt-8 text-center">
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="rounded-full">
               <Link to="/faq">View all FAQs &amp; grooming tips</Link>
             </Button>
           </div>
