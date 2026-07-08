@@ -74,7 +74,7 @@ function ShopPage() {
   }, [animal, category, sort]);
 
   function update(patch: Partial<ShopSearch>) {
-    navigate({ search: (prev) => ({ ...prev, ...patch }) });
+    navigate({ search: (prev: ShopSearch) => ({ ...prev, ...patch }) });
   }
 
   return (
