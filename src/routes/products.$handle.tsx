@@ -78,7 +78,7 @@ function ProductNotFound() {
 }
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: Product };
   const { addItem, open } = useCart();
 
   const [activeImage, setActiveImage] = useState(0);
