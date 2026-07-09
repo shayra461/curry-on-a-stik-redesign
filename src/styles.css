@@ -50,7 +50,8 @@
   --font-serif: var(--font-serif-brand);
 
   --shadow-card: 0 1px 2px oklch(0.2 0.02 150 / 0.04), 0 8px 24px -12px oklch(0.2 0.02 150 / 0.12);
-  --shadow-card-hover: 0 2px 4px oklch(0.2 0.02 150 / 0.06), 0 16px 40px -16px oklch(0.2 0.02 150 / 0.18);
+  --shadow-card-hover:
+    0 2px 4px oklch(0.2 0.02 150 / 0.06), 0 16px 40px -16px oklch(0.2 0.02 150 / 0.18);
   --shadow-sticky: 0 -1px 0 var(--border), 0 -8px 24px -16px oklch(0.2 0.02 150 / 0.15);
 }
 
@@ -72,7 +73,7 @@
   --popover-foreground: oklch(0.24 0.015 155);
 
   /* Editorial lilac accent — used for serif emphasis words */
-  --lilac: oklch(0.47 0.10 295);
+  --lilac: oklch(0.47 0.1 295);
   --lilac-soft: oklch(0.92 0.05 295);
 
   /* Brand green — trustworthy natural wellness accent */
@@ -80,19 +81,19 @@
   --primary-foreground: oklch(0.99 0.01 120);
 
   --secondary: oklch(0.96 0.01 150);
-  --secondary-foreground: oklch(0.30 0.02 155);
+  --secondary-foreground: oklch(0.3 0.02 155);
 
   --muted: oklch(0.965 0.006 120);
-  --muted-foreground: oklch(0.50 0.015 150);
+  --muted-foreground: oklch(0.5 0.015 150);
 
   /* Copper — subtle secondary nod to nano-copper technology */
   --accent: oklch(0.66 0.11 55);
   --accent-foreground: oklch(0.99 0.01 90);
 
-  --destructive: oklch(0.55 0.20 27);
+  --destructive: oklch(0.55 0.2 27);
   --destructive-foreground: oklch(0.99 0.01 90);
 
-  --sale: oklch(0.55 0.20 27);
+  --sale: oklch(0.55 0.2 27);
   --star: oklch(0.78 0.15 82);
 
   --border: oklch(0.92 0.008 130);
@@ -118,15 +119,25 @@
     font-feature-settings: "cv11", "ss01";
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     color: var(--color-foreground);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
-  h1 { font-weight: 800; }
-  h2, h3 { font-weight: 700; }
+  h1 {
+    font-weight: 800;
+  }
+  h2,
+  h3 {
+    font-weight: 700;
+  }
 
   ::selection {
     background-color: color-mix(in oklab, var(--primary) 22%, transparent);
@@ -146,4 +157,86 @@
       padding-inline: 2rem;
     }
   }
+}
+
+/* Premium Floating & Scrolling Background Effects */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(4deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(-4deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 10s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 35s linear infinite;
+}
+
+/* Premium Reveal On Scroll Animation styling */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll-driven Parallax Classes */
+.parallax-slow-up {
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.08))
+    rotate(calc(var(--scroll-y, 0px) * 0.02deg));
+  transition: transform 0.2s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+.parallax-slow-down {
+  transform: translateY(calc(var(--scroll-y, 0px) * 0.08))
+    rotate(calc(var(--scroll-y, 0px) * -0.02deg));
+  transition: transform 0.2s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+.parallax-medium-up {
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.15))
+    rotate(calc(var(--scroll-y, 0px) * 0.03deg));
+  transition: transform 0.2s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+.parallax-medium-down {
+  transform: translateY(calc(var(--scroll-y, 0px) * 0.15))
+    rotate(calc(var(--scroll-y, 0px) * -0.03deg));
+  transition: transform 0.2s cubic-bezier(0.1, 1, 0.1, 1);
 }

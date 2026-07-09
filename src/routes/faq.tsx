@@ -70,7 +70,10 @@ function FaqPage() {
           />
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
             {groomingTips.map((tip, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-card">
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-card"
+              >
                 <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
                   <Check className="h-4 w-4" />
                 </span>

@@ -42,18 +42,12 @@ export function priceLabel(p: Product): string {
 
 /* Short, scannable product subtitles (derived from existing site copy). */
 export const productTagline: Record<string, string> = {
-  "curry-on-a-stik":
-    "The only grooming, massage & bathing tool you'll ever need.",
-  "complete-grooming-kit-save-10":
-    "Curry On A Stik' + Corakko Shampoo — save 10%.",
-  "corakko-canine-shampoo":
-    "Therapeutic nano-copper shampoo for a healthy, shining coat.",
-  "corakko-snake-oil-8oz":
-    "Copper nano topical that soothes, heals & protects the skin.",
-  "corakko-snake-oil-8oz-matico":
-    "Now infused with Matico for advanced tissue repair.",
-  "starter-grooming-kit":
-    "Curry On A Stik' paired with a 16oz Corakko Shampoo — save 10%.",
+  "curry-on-a-stik": "The only grooming, massage & bathing tool you'll ever need.",
+  "complete-grooming-kit-save-10": "Curry On A Stik' + Corakko Shampoo — save 10%.",
+  "corakko-canine-shampoo": "Therapeutic nano-copper shampoo for a healthy, shining coat.",
+  "corakko-snake-oil-8oz": "Copper nano topical that soothes, heals & protects the skin.",
+  "corakko-snake-oil-8oz-matico": "Now infused with Matico for advanced tissue repair.",
+  "starter-grooming-kit": "Curry On A Stik' paired with a 16oz Corakko Shampoo — save 10%.",
 };
 
 export const categoryLabels: Record<Product["category"], string> = {
@@ -103,13 +97,12 @@ export const brandStory = {
   intro:
     "Created by a husband-and-wife team, Jeff and Sharon, who spent over two years developing, designing, testing and perfecting a curry comb after reviewing nearly every brush on the market. The result is a professional, therapeutic grooming, massage and bathing tool for horses, dogs and cats.",
   origin:
-    "\"I have been riding and showing horses for 35 years. What I yearned for was a tool that could curry and massage at the same time. My fingers hurt, my hands were filthy, and the curry would fly out of my hand. There had to be a better way — a well-balanced tool on a handle that alleviates stress on the fingers, wrist and elbow, with coarse rubber on one side and softer rubber on the other. Taking all that under consideration, we designed Curry On A Stik'.\"",
+    '"I have been riding and showing horses for 35 years. What I yearned for was a tool that could curry and massage at the same time. My fingers hurt, my hands were filthy, and the curry would fly out of my hand. There had to be a better way — a well-balanced tool on a handle that alleviates stress on the fingers, wrist and elbow, with coarse rubber on one side and softer rubber on the other. Taking all that under consideration, we designed Curry On A Stik\'."',
   corakko:
     "The Corakko premium therapeutic skin care line integrates the power of nano-copper technology with an ancestral Chilean herb from the Quillac Seponaira plant and Coptis Huang Lian, a fundamental herb of Traditional Chinese Medicine, to treat and prevent bacterial and fungal growth on and under the skin.",
   corakkoDetail:
     "The formula's main ingredients are combined with a unique blend of skin conditioning agents, cleansing agents and moisturizers. It is both preventative and therapeutic for many common skin diseases — anti-inflammatory, anti-oxidative and anti-microbial to bacteria, fungi and viruses — leaving the coat moisturized, nourished and shining.",
-  vet:
-    "Veterinarian recommended by Dr. Michael Selmer, TCVM — an equine practitioner in Traditional Chinese Veterinary Medicine, certified in acupuncture, herbal medicine, Tui-na and spinal manipulation from the Chi Institute, where he also teaches.",
+  vet: "Veterinarian recommended by Dr. Michael Selmer, TCVM — an equine practitioner in Traditional Chinese Veterinary Medicine, certified in acupuncture, herbal medicine, Tui-na and spinal manipulation from the Chi Institute, where he also teaches.",
   awards:
     "Winner of the Family Choice Award for both Curry On A Stik' & Corakko products, and endorsed by the Chi University for Integrative Medicine.",
 };
@@ -142,22 +135,32 @@ export const animalCategories = [
       "Professional equestrians around the globe rave about the shine Curry On A Stik' brings to a horse's coat.",
     image:
       "https://cdn.shopify.com/s/files/1/0500/3270/5696/files/16oz_Horse_Brush.png?v=1772651679",
+    video: "/horse_green.mp4",
+    bgColor: "bg-white",
+    tag: "Equine Therapy 🐴",
+    videoStyle: { transform: "scale(1.1) translateX(-5px)", transformOrigin: "top left" },
   },
   {
     key: "dog" as const,
     title: "For Dogs",
     blurb:
       "Works wonders on both short and long coats alike — your dog will love the massaging effect.",
-    image:
-      "https://cdn.shopify.com/s/files/1/0500/3270/5696/files/16oz_Dog_Brush.png?v=1772651650",
+    image: "https://cdn.shopify.com/s/files/1/0500/3270/5696/files/16oz_Dog_Brush.png?v=1772651650",
+    video: "/dog.webm",
+    bgColor: "bg-white",
+    tag: "Canine Massage 🐶",
+    videoStyle: { transform: "scale(1.4)", transformOrigin: "bottom center" },
   },
   {
     key: "cat" as const,
     title: "For Cats",
     blurb:
       "Having a difficult time with your cat's coat? Feline friends love our gentle grooming tool.",
-    image:
-      "https://cdn.shopify.com/s/files/1/0500/3270/5696/files/Brush_NEW.png?v=1772651276",
+    image: "https://cdn.shopify.com/s/files/1/0500/3270/5696/files/Brush_NEW.png?v=1772651276",
+    video: "/cat_green.mov",
+    bgColor: "bg-white",
+    tag: "Feline Wellness 🐱",
+    videoStyle: { transform: "translateY(70px) scale(1.2)", transformOrigin: "bottom center" },
   },
 ];
 
@@ -167,6 +170,9 @@ export type Testimonial = {
   location?: string;
   title?: string;
   quote: string;
+  rating?: number;
+  category?: "horse" | "dog" | "cat" | "general";
+  verified?: boolean;
 };
 
 export const testimonials: Testimonial[] = [
@@ -174,29 +180,44 @@ export const testimonials: Testimonial[] = [
     name: "Annelisa",
     quote:
       "The only brush you'll ever need! My vet introduced it for therapeutic massage — added bonus that it's the kindest, most effective de-shedding brush ever, plus it pairs perfectly with the shampoo for bathing.",
+    rating: 5,
+    category: "general",
+    verified: true,
   },
   {
     name: "Dee Rodkey",
     title: "Amazing Brush",
     quote:
       "We have 2 German Shepherds with very different coats. I'm amazed at how much fur I've de-shed. It's not only for grooming but for massaging too — my hyper dog sat down and calmed almost instantly.",
+    rating: 5,
+    category: "dog",
+    verified: true,
   },
   {
     name: "Remy",
     title: "Incredible brush",
     quote:
       "Will never buy a different curry again — I have nerve damage in my neck and with this brush my hands no longer freeze up while grooming. Can feel the difference when riding!",
+    rating: 5,
+    category: "horse",
+    verified: true,
   },
   {
     name: "Trish",
     title: "Bought it for my horse, using it on my dog!",
     quote:
       "Got it originally for my horse but couldn't believe how much my dog loves it. Going to get a second — one for the barn and one for the house. Makes grooming so much easier.",
+    rating: 5,
+    category: "dog",
+    verified: true,
   },
   {
     name: "Critterguy",
     quote:
       "Curry On A Stik and Corakko shampoo make my horses' coats shine. Their coats are bright, shiny and thick. They never looked so good.",
+    rating: 5,
+    category: "horse",
+    verified: true,
   },
   {
     name: "Jessica",
@@ -204,6 +225,9 @@ export const testimonials: Testimonial[] = [
     title: "My 2 French bulldogs love it!",
     quote:
       "They first treated it as a toy, then genuinely loved it so much they both fall asleep while being brushed. A very well thought-out product for both the animals and humans.",
+    rating: 5,
+    category: "dog",
+    verified: true,
   },
   {
     name: "Sierra",
@@ -211,6 +235,9 @@ export const testimonials: Testimonial[] = [
     title: "A Wonderful Addition",
     quote:
       "It has saved my hands from old curry brushes and serves many purposes around the barn. My horse loves the massage properties. The double sides are genius — 100% worth the money.",
+    rating: 5,
+    category: "horse",
+    verified: true,
   },
   {
     name: "Jane Armour",
@@ -218,6 +245,9 @@ export const testimonials: Testimonial[] = [
     title: "Mindful grooming",
     quote:
       "After using it as a massage tool, my horse is freer through her shoulders and hips and takes a bigger step. An essential tool for anyone interested in massage as part of grooming.",
+    rating: 5,
+    category: "horse",
+    verified: true,
   },
   {
     name: "Ann Biederman",
@@ -225,16 +255,24 @@ export const testimonials: Testimonial[] = [
     title: "My Labradoodle Loves It",
     quote:
       "My 56 lb. labradoodle loves your massage brush. He turns over for me to massage his belly!",
+    rating: 5,
+    category: "dog",
+    verified: true,
   },
   {
     name: "Carole Robinson",
     quote:
       "All my cats like it! I just couldn't believe it — usually when I try to brush them I get scratched. Not anymore.",
+    rating: 5,
+    category: "cat",
+    verified: true,
   },
   {
     name: "Barbara Lee",
-    quote:
-      "Awesome tool! My horses love it. It helps since I have arthritis in both my hands.",
+    quote: "Awesome tool! My horses love it. It helps since I have arthritis in both my hands.",
+    rating: 5,
+    category: "horse",
+    verified: true,
   },
   {
     name: "Rebecca Apson",
@@ -242,6 +280,9 @@ export const testimonials: Testimonial[] = [
     title: "Happy Customer",
     quote:
       "I purchased Curry On A Stik' as gifts for friends with pets. Wow — what a great reaction! Their pets loved it and it was great bonding time.",
+    rating: 5,
+    category: "general",
+    verified: true,
   },
 ];
 
@@ -275,7 +316,8 @@ export const videos: VideoItem[] = [
   },
   {
     title: "Sharon Grooms Frederick the Pony",
-    description: "See what our pony Frederick Hobbs of Hollywood has to say about Curry On A Stik'.",
+    description:
+      "See what our pony Frederick Hobbs of Hollywood has to say about Curry On A Stik'.",
     provider: "vimeo",
     id: "477066196",
   },
@@ -352,7 +394,7 @@ export const policies: Policy[] = [
       },
       {
         heading: "Delivery",
-        body: "Delivery times vary based on your location and the carrier. Many customers report fast delivery — as one reviewer put it, \"I bought it online late Thursday night and it was in my mailbox today.\"",
+        body: 'Delivery times vary based on your location and the carrier. Many customers report fast delivery — as one reviewer put it, "I bought it online late Thursday night and it was in my mailbox today."',
       },
     ],
   },
@@ -405,6 +447,7 @@ export function getPolicy(slug: string): Policy | undefined {
 export const business = {
   name: "Curry On A Stik'",
   tagline: "Professional, Therapeutic Grooming, Massage & Bathing Tools for Horses, Dogs & Cats.",
-  banner: "30-Day Money Back Guarantee · Created with Veterinarians · Over 50,000 Happy Fur Babies & Fur Parents",
+  banner:
+    "30-Day Money Back Guarantee · Created with Veterinarians · Over 50,000 Happy Fur Babies & Fur Parents",
   heroPrice: 29.95,
 };

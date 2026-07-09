@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 export type CartItem = {
   key: string;
@@ -72,9 +65,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setItems((prev) => {
           const existing = prev.find((p) => p.key === key);
           if (existing) {
-            return prev.map((p) =>
-              p.key === key ? { ...p, qty: p.qty + qty } : p,
-            );
+            return prev.map((p) => (p.key === key ? { ...p, qty: p.qty + qty } : p));
           }
           return [...prev, { ...item, key, qty }];
         });

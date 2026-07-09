@@ -10,7 +10,12 @@ export const Route = createFileRoute("/policies/$policy")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Policy not found — Curry On A Stik'" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Policy not found — Curry On A Stik'" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     const { policy } = loaderData;
     return {

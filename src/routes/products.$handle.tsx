@@ -1,14 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  Check,
-  ShieldCheck,
-  Truck,
-  RotateCcw,
-  Lock,
-  Minus,
-  Plus,
-} from "lucide-react";
+import { Check, ShieldCheck, Truck, RotateCcw, Lock, Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -44,7 +36,12 @@ export const Route = createFileRoute("/products/$handle")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Product not found — Curry On A Stik'" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Product not found — Curry On A Stik'" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     const { product } = loaderData;
     const desc = (productTagline[product.handle] ?? product.description).slice(0, 155);
@@ -69,7 +66,9 @@ function ProductNotFound() {
   return (
     <div className="container-page flex min-h-[50vh] flex-col items-center justify-center gap-4 text-center">
       <h1 className="text-2xl font-bold">Product not found</h1>
-      <p className="text-muted-foreground">This product may have moved or is no longer available.</p>
+      <p className="text-muted-foreground">
+        This product may have moved or is no longer available.
+      </p>
       <Button asChild>
         <Link to="/shop">Back to shop</Link>
       </Button>
@@ -102,7 +101,9 @@ function ProductPage() {
       },
       qty,
     );
-    toast.success("Added to cart", { description: `${product.title}${variant.title !== "Default Title" ? ` · ${variant.title}` : ""}` });
+    toast.success("Added to cart", {
+      description: `${product.title}${variant.title !== "Default Title" ? ` · ${variant.title}` : ""}`,
+    });
   }
 
   const usageSteps =
@@ -226,7 +227,14 @@ function ProductPage() {
                 Add to Cart · {formatPrice(price * qty)}
               </Button>
             </div>
-            <Button variant="outline" size="lg" onClick={() => { add(); open(); }}>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                add();
+                open();
+              }}
+            >
               Buy Now
             </Button>
 
@@ -305,7 +313,10 @@ function ProductPage() {
           <h2 className="text-2xl font-bold">Ingredients</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {ingredients.map((ing) => (
-              <div key={ing.name} className="rounded-xl border border-border bg-card p-5 shadow-card">
+              <div
+                key={ing.name}
+                className="rounded-xl border border-border bg-card p-5 shadow-card"
+              >
                 <h3 className="text-base font-bold">{ing.name}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{ing.text}</p>
               </div>

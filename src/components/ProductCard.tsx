@@ -3,13 +3,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Stars } from "@/components/Stars";
 import { useCart } from "@/lib/cart";
-import {
-  priceLabel,
-  productTagline,
-  formatPrice,
-  categoryLabels,
-  type Product,
-} from "@/data/site";
+import { priceLabel, productTagline, formatPrice, categoryLabels, type Product } from "@/data/site";
 import { toast } from "sonner";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -50,9 +44,7 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-1 flex-col gap-2 p-4">
         <Stars size={14} />
-        <h3 className="text-base font-bold leading-snug text-foreground">
-          {product.title}
-        </h3>
+        <h3 className="text-base font-bold leading-snug text-foreground">{product.title}</h3>
         {productTagline[product.handle] && (
           <p className="line-clamp-2 text-sm text-muted-foreground">
             {productTagline[product.handle]}
@@ -60,9 +52,7 @@ export function ProductCard({ product }: { product: Product }) {
         )}
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-2">
-          <span className="text-lg font-bold text-foreground">
-            {priceLabel(product)}
-          </span>
+          <span className="text-lg font-bold text-foreground">{priceLabel(product)}</span>
           {hasVariants ? (
             <Button size="sm" variant="secondary" className="pointer-events-none">
               Options

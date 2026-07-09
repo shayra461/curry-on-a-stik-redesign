@@ -5,8 +5,16 @@ import { business } from "@/data/site";
 const shopLinks = [
   { to: "/shop", label: "All Products" },
   { to: "/products/$handle", params: { handle: "curry-on-a-stik" }, label: "Curry On A Stik'" },
-  { to: "/products/$handle", params: { handle: "corakko-canine-shampoo" }, label: "Corakko Shampoo" },
-  { to: "/products/$handle", params: { handle: "corakko-snake-oil-8oz" }, label: "Corakko Snake Oil" },
+  {
+    to: "/products/$handle",
+    params: { handle: "corakko-canine-shampoo" },
+    label: "Corakko Shampoo",
+  },
+  {
+    to: "/products/$handle",
+    params: { handle: "corakko-snake-oil-8oz" },
+    label: "Corakko Snake Oil",
+  },
 ] as const;
 
 const infoLinks = [
@@ -26,12 +34,8 @@ export function Footer() {
     <footer className="border-t border-border bg-background">
       <div className="container-page grid grid-cols-2 gap-8 py-14 md:grid-cols-4 lg:py-16">
         <div className="col-span-2 md:col-span-1">
-          <span className="text-lg font-extrabold tracking-tight">
-            Curry On A Stik<span className="text-accent">'</span>
-          </span>
-          <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            {business.tagline}
-          </p>
+          <img src="/logo.svg" alt="Curry On A Stik" className="h-10 w-auto object-contain" />
+          <p className="mt-3 max-w-xs text-sm text-muted-foreground">{business.tagline}</p>
           <div className="mt-4 flex gap-2">
             <a
               href="https://www.facebook.com/curryonastik"

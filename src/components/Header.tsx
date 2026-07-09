@@ -38,10 +38,12 @@ export function Header() {
               <Menu className="h-5 w-5" />
             </button>
 
-            <Link to="/" className="flex items-center gap-2">
-              <span className="text-lg font-extrabold tracking-tight text-foreground sm:text-xl">
-                Curry On A Stik<span className="text-accent">.</span>
-              </span>
+            <Link to="/" className="flex items-center">
+              <img
+                src="/logo.svg"
+                alt="Curry On A Stik"
+                className="h-9 sm:h-11 w-auto object-contain"
+              />
             </Link>
 
             <nav className="hidden items-center gap-1 lg:flex">

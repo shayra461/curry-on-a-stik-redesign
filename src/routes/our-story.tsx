@@ -17,7 +17,8 @@ export const Route = createFileRoute("/our-story")({
       { property: "og:title", content: "Our Story — Curry On A Stik'" },
       {
         property: "og:description",
-        content: "The husband-and-wife team and veterinary science behind Curry On A Stik' & Corakko.",
+        content:
+          "The husband-and-wife team and veterinary science behind Curry On A Stik' & Corakko.",
       },
     ],
   }),
@@ -85,7 +86,10 @@ function OurStory() {
               <p className="mt-3 text-muted-foreground">{brandStory.corakkoDetail}</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {ingredients.map((ing) => (
-                  <div key={ing.name} className="rounded-xl border border-border bg-card p-5 shadow-card">
+                  <div
+                    key={ing.name}
+                    className="rounded-xl border border-border bg-card p-5 shadow-card"
+                  >
                     <h3 className="text-base font-bold">{ing.name}</h3>
                     <p className="mt-1.5 text-sm text-muted-foreground">{ing.text}</p>
                   </div>
