@@ -265,7 +265,7 @@ function Index() {
           </div>
         </div>
         <div className="flex flex-col items-center gap-3 text-center reveal-on-scroll">
-          <span className="text-base font-bold uppercase tracking-[0.3em] text-[#cd7f32]">
+          <span className="text-xl font-bold uppercase tracking-[0.3em] text-[#cd7f32]">
             Why it works
           </span>
           <h2 className="max-w-3xl text-3xl font-extrabold sm:text-4xl md:text-5xl">
