@@ -232,7 +232,7 @@ function Index() {
             <div className="relative mx-auto max-w-md">
               <div className="overflow-hidden rounded-[2.5rem] border border-border bg-card p-6 shadow-card-hover sm:p-10">
                 <img
-                  src={hero.images[0]}
+                  src="/hero_brush.jpg"
                   alt="Curry On A Stik' therapeutic curry comb"
                   className="h-full w-full object-contain"
                   fetchPriority="high"
