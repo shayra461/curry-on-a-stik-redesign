@@ -230,11 +230,11 @@ function Index() {
 
           <div className="order-1 md:order-2 reveal-on-scroll">
             <div className="relative mx-auto max-w-md">
-              <div className="overflow-hidden rounded-[2.5rem] border border-border bg-card p-6 shadow-card-hover sm:p-10">
+              <div className="overflow-hidden rounded-[2.5rem] border border-border shadow-card-hover aspect-square">
                 <img
                   src="/hero_brush.png"
                   alt="Curry On A Stik' therapeutic curry comb"
-                  className="h-full w-full object-contain"
+                  className="h-full w-full object-cover"
                   fetchPriority="high"
                 />
               </div>
